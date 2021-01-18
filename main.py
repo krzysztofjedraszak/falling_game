@@ -13,6 +13,27 @@ punkty=0
 
 gracz = Actor("p1_stand", (400, 484))
 
+
+y1_min=-2100
+y2_max=-100
+
+for _ in range(12):
+    anvil = Actor("anvil", (random.randint(0, 800), random.randint(y1_min, y2_max)))
+    anvils.append(anvil)
+
+for _ in range(7):
+    star = Actor("star", (random.randint(0, 800), random.randint(y1_min, y2_max)))
+    stars.append(star)
+
+for _ in range(5):
+    fireball = Actor("fireball", (random.randint(0, 800), random.randint(y1_min, y2_max)))
+    fireballs.append(fireball)
+
+for i in range(3):
+    heart = Actor("heart", (30+53*i,28))
+    hearts.append(heart)
+
+    
 def draw():
     global stan_gry
     global zycia

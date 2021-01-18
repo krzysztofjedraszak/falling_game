@@ -65,7 +65,39 @@ def update():
         spadanie_przeszkod()
         detektor_kolizji()
 
+def animacja_gracza():
+    global klatka
+    if stan_gry == 1:
+        for i in range(1, 10):
+            if klatka == 0:
+                gracz.image = "p1_walk01"
 
+            elif klatka == i:
+                gracz.image = f"p1_walk0{i}"
+            # elif klatka == 1:
+            #     gracz.image = f"p1_walk02"
+            # elif klatka == 2:
+            #     gracz.image = f"p1_walk03"
+            # elif klatka == 3:
+            #     gracz.image = f"p1_walk04"
+            # elif klatka == 4:
+            #     gracz.image = f"p1_walk05"
+            # elif klatka == 5:
+            #     gracz.image = f"p1_walk06"
+            # elif klatka == 6:
+            #     gracz.image = f"p1_walk07"
+            # elif klatka == 7:
+            #     gracz.image = f"p1_walk08"
+            # elif klatka == 8:
+            #     gracz.image = f"p1_walk09"
+            elif klatka == 9:
+                gracz.image = "p1_walk10"
+            elif klatka == 10:
+                gracz.image = "p1_walk11"
+
+    klatka += 1
+    if klatka == 11:
+        klatka = 0
 
 
 

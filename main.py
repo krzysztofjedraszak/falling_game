@@ -1,21 +1,21 @@
-import pgzrun
 import random
+
+import pgzrun
 
 klatka = 0
 stan_gry = 0
-anvils=[]
-stars=[]
-fireballs=[]
-hearts=[]
-level=0
-zycia=3
-punkty=0
+anvils = []
+stars = []
+fireballs = []
+hearts = []
+level = 0
+zycia = 3
+punkty = 0
 
 gracz = Actor("p1_stand", (400, 484))
 
-
-y1_min=-2100
-y2_max=-100
+y1_min = -2100
+y2_max = -100
 
 for _ in range(12):
     anvil = Actor("anvil", (random.randint(0, 800), random.randint(y1_min, y2_max)))
@@ -30,7 +30,7 @@ for _ in range(5):
     fireballs.append(fireball)
 
 for i in range(3):
-    heart = Actor("heart", (30+53*i,28))
+    heart = Actor("heart", (30 + 53 * i, 28))
     hearts.append(heart)
 
 
@@ -55,12 +55,22 @@ def draw():
     for i in hearts:
         i.draw()
 
-
-    screen.draw.text(f"Punkty: {punkty}", center=(650 , 28), color="orange",fontsize=60)
+    screen.draw.text(f"Punkty: {punkty}", center=(650, 28), color="orange", fontsize=60)
 
     if stan_gry == 0:
-        screen.draw.text("Wcisnij ENTER aby rozpoczac gre", center=(screen.width / 2, screen.height / 2),color="orange", fontsize=60)
+        screen.draw.text("Wcisnij ENTER aby rozpoczac gre", center=(screen.width / 2, screen.height / 2),
+                         color="orange", fontsize=60)
 
+    if zycia == 0:
+        stan_gry = "q"
+        screen.draw.text("Przegrales :( Koniec Gry", center=(screen.width / 2, screen.height / 2 - 30), color="orange",
+                         fontsize=60)
+        screen.draw.text("Wcisnij ENTER aby zagrac jeszcze raz", center=(screen.width / 2, screen.height / 2 + 30),
+                         color="orange", fontsize=60)
+        if keyboard.RETURN:
+            dodanie_zyc()
+            reset()
+            
 
 def update():
     global klatka
@@ -70,8 +80,8 @@ def update():
         if stan_gry == 0:
             stan_gry = 1
 
-    if stan_gry==1:
-        szybkosc=6
+    if stan_gry == 1:
+        szybkosc = 6
         if keyboard.RIGHT or keyboard.LEFT:
             if keyboard.RIGHT:
                 gracz.left += szybkosc
@@ -80,10 +90,10 @@ def update():
                 gracz.left -= szybkosc
 
             if keyboard.SPACE and keyboard.LEFT:
-                gracz.left -= 2*szybkosc
+                gracz.left -= 2 * szybkosc
 
             if keyboard.SPACE and keyboard.RIGHT:
-                gracz.left += 2*szybkosc
+                gracz.left += 2 * szybkosc
 
             animacja_gracza()
 
@@ -95,6 +105,7 @@ def update():
 
         spadanie_przeszkod()
         detektor_kolizji()
+
 
 def animacja_gracza():
     global klatka
@@ -130,26 +141,27 @@ def animacja_gracza():
     if klatka == 11:
         klatka = 0
 
+
 def spadanie_przeszkod():
     global y1_min
     global y2_max
 
     for anvil in anvils:
-        anvil.y+=6
-        if anvil.y>=600:
-            anvil.y=random.randint(y1_min, y2_max)
-            anvil.x=random.randint(0,800)
+        anvil.y += 6
+        if anvil.y >= 600:
+            anvil.y = random.randint(y1_min, y2_max)
+            anvil.x = random.randint(0, 800)
 
     for star in stars:
-        star.y+=5
-        if star.y>=600:
-            star.y=random.randint(y1_min, y2_max)
+        star.y += 5
+        if star.y >= 600:
+            star.y = random.randint(y1_min, y2_max)
             star.x = random.randint(0, 800)
 
     for fireball in fireballs:
-        fireball.y+=8
-        if fireball.y>=600:
-            fireball.y=random.randint(y1_min, y2_max)
+        fireball.y += 8
+        if fireball.y >= 600:
+            fireball.y = random.randint(y1_min, y2_max)
             fireball.x = random.randint(0, 800)
 
 
@@ -161,26 +173,26 @@ def detektor_kolizji():
 
     for i in anvils:
         if gracz.colliderect(i):
-            if zycia>=1:
-                zycia-=1
+            if zycia >= 1:
+                zycia -= 1
                 hearts.pop()
-                i.x=random.randint(0, 800)
-                i.y=random.randint(y1_min, y2_max)
+                i.x = random.randint(0, 800)
+                i.y = random.randint(y1_min, y2_max)
 
     for i in stars:
         if gracz.colliderect(i):
-            punkty+=10
+            punkty += 10
             i.x = random.randint(0, 800)
             i.y = random.randint(y1_min, y2_max)
 
     for i in fireballs:
         if gracz.colliderect(i):
-            if zycia>=1:
-                zycia-=1
-                punkty-=5
+            if zycia >= 1:
+                zycia -= 1
+                punkty -= 5
                 hearts.pop()
-                i.x=random.randint(0, 800)
-                i.y=random.randint(y1_min, y2_max)
+                i.x = random.randint(0, 800)
+                i.y = random.randint(y1_min, y2_max)
 
 
 pgzrun.go()

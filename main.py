@@ -33,7 +33,7 @@ for i in range(3):
     heart = Actor("heart", (30+53*i,28))
     hearts.append(heart)
 
-    
+
 def draw():
     global stan_gry
     global zycia
@@ -46,6 +46,16 @@ def draw():
 
     gracz.draw()
 
+    for i in anvils:
+        i.draw()
+    for i in stars:
+        i.draw()
+    for i in fireballs:
+        i.draw()
+    for i in hearts:
+        i.draw()
+
+        
     screen.draw.text(f"Punkty: {punkty}", center=(650 , 28), color="orange",fontsize=60)
 
     if stan_gry == 0:
@@ -120,7 +130,27 @@ def animacja_gracza():
     if klatka == 11:
         klatka = 0
 
+def spadanie_przeszkod():
+    global y1_min
+    global y2_max
 
+    for anvil in anvils:
+        anvil.y+=6
+        if anvil.y>=600:
+            anvil.y=random.randint(y1_min, y2_max)
+            anvil.x=random.randint(0,800)
+
+    for star in stars:
+        star.y+=5
+        if star.y>=600:
+            star.y=random.randint(y1_min, y2_max)
+            star.x = random.randint(0, 800)
+
+    for fireball in fireballs:
+        fireball.y+=8
+        if fireball.y>=600:
+            fireball.y=random.randint(y1_min, y2_max)
+            fireball.x = random.randint(0, 800)
 
 
 

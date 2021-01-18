@@ -33,6 +33,22 @@ for i in range(3):
     heart = Actor("heart", (30 + 53 * i, 28))
     hearts.append(heart)
 
+def reset():
+    global zycia
+    global punkty
+    global klatka
+    global stan_gry
+    zycia=3
+    punkty=0
+    klatka=0
+    stan_gry=0
+
+def dodanie_zyc():
+    global stan_gry
+    if stan_gry=="q":
+        for i in range(3):
+            heart = Actor("heart", (30 + 53 * i, 28))
+            hearts.append(heart)
 
 def draw():
     global stan_gry
@@ -70,7 +86,7 @@ def draw():
         if keyboard.RETURN:
             dodanie_zyc()
             reset()
-            
+
 
 def update():
     global klatka

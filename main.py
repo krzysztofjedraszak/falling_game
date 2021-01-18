@@ -55,7 +55,7 @@ def draw():
     for i in hearts:
         i.draw()
 
-        
+
     screen.draw.text(f"Punkty: {punkty}", center=(650 , 28), color="orange",fontsize=60)
 
     if stan_gry == 0:
@@ -153,69 +153,34 @@ def spadanie_przeszkod():
             fireball.x = random.randint(0, 800)
 
 
+def detektor_kolizji():
+    global zycia
+    global punkty
+    global y1_min
+    global y2_max
 
+    for i in anvils:
+        if gracz.colliderect(i):
+            if zycia>=1:
+                zycia-=1
+                hearts.pop()
+                i.x=random.randint(0, 800)
+                i.y=random.randint(y1_min, y2_max)
 
+    for i in stars:
+        if gracz.colliderect(i):
+            punkty+=10
+            i.x = random.randint(0, 800)
+            i.y = random.randint(y1_min, y2_max)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    for i in fireballs:
+        if gracz.colliderect(i):
+            if zycia>=1:
+                zycia-=1
+                punkty-=5
+                hearts.pop()
+                i.x=random.randint(0, 800)
+                i.y=random.randint(y1_min, y2_max)
 
 
 pgzrun.go()

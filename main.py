@@ -33,6 +33,18 @@ for i in range(3):
     heart = Actor("heart", (30 + 53 * i, 28))
     hearts.append(heart)
 
+def reset_obiektow():
+    for i in anvils:
+        i.y = random.randint(y1_min, y2_max)
+        i.x = random.randint(0, 800)
+
+    for i in fireballs:
+        i.y = random.randint(y1_min, y2_max)
+        i.x = random.randint(0, 800)
+
+    for i in stars:
+        i.y = random.randint(y1_min, y2_max)
+        i.x = random.randint(0, 800)
 
 def dodanie_obiektow():
     global punkty
@@ -128,7 +140,7 @@ def draw():
         if keyboard.RETURN:
             dodanie_zyc()
             reset()
-
+            reset_obiektow()
 
 def update():
     global klatka

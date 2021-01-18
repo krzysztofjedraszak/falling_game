@@ -33,22 +33,64 @@ for i in range(3):
     heart = Actor("heart", (30 + 53 * i, 28))
     hearts.append(heart)
 
+
+def dodanie_obiektow():
+    global punkty
+    global level
+    if punkty >= 50 and punkty < 100:
+        if level == 0:
+            for _ in range(2):
+                anvil = Actor("anvil", (random.randint(0, 800), random.randint(y1_min, y2_max)))
+                anvils.append(anvil)
+            level += 1
+
+    if punkty >= 100 and punkty < 150:
+        if level == 1:
+            for _ in range(3):
+                fireball = Actor("fireball", (random.randint(0, 800), random.randint(y1_min, y2_max)))
+                fireballs.append(fireball)
+            level += 1
+
+    if punkty >= 150 and punkty < 200:
+        if level == 2:
+            for _ in range(2):
+                anvil = Actor("anvil", (random.randint(0, 800), random.randint(y1_min, y2_max)))
+                anvils.append(anvil)
+            level += 1
+
+    if punkty >= 200 and punkty < 250:
+        if level == 3:
+            for _ in range(2):
+                anvil = Actor("anvil", (random.randint(0, 800), random.randint(y1_min, y2_max)))
+                anvils.append(anvil)
+            level += 1
+
+    if punkty >= 300:
+        if level == 4:
+            for _ in range(2):
+                anvil = Actor("anvil", (random.randint(0, 800), random.randint(y1_min, y2_max)))
+                anvils.append(anvil)
+            level += 1
+
+
 def reset():
     global zycia
     global punkty
     global klatka
     global stan_gry
-    zycia=3
-    punkty=0
-    klatka=0
-    stan_gry=0
+    zycia = 3
+    punkty = 0
+    klatka = 0
+    stan_gry = 0
+
 
 def dodanie_zyc():
     global stan_gry
-    if stan_gry=="q":
+    if stan_gry == "q":
         for i in range(3):
             heart = Actor("heart", (30 + 53 * i, 28))
             hearts.append(heart)
+
 
 def draw():
     global stan_gry
